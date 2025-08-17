@@ -29,7 +29,7 @@ This page includes interactive features like smooth scrolling, fade-in animation
 ---
 
 ## 🔗 Live Demo
-👉 [View Hot.html](https://yourusername.github.io/hot-page)  
+👉 [View Hot.html](https://Hussainpeera335.github.io/hot-page)  
 
 ---
 

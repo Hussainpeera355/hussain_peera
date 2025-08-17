@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hot Page</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: #1f1f1f;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      color: orange;
+      font-size: 2.5rem;
+      min-height: 50px; /* reserve space for typing */
+      border-right: 2px solid #00fff5;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    nav { margin-top: 10px; }
+    nav a {
+      color: #00fff5;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: orange; }
+
+    section {
+      margin: 40px 0;
+      padding: 20px;
+      background: #1e1e1e;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 255, 245, 0.2);
+      min-height: 300px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h2 { margin-bottom: 10px; color: #00fff5; }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      background: #1f1f1f;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Back-to-top button */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #00fff5;
+      color: #121212;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 0 10px rgba(0,255,245,0.6);
+      transition: all 0.3s;
+    }
+    #backToTop:hover {
+      background: orange;
+      color: white;
+      box-shadow: 0 0 15px rgba(255,165,0,0.8);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="typing-text"></h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>This is a demo page built with HTML and CSS. Now it’s interactive with smooth scrolling, fade-in sections, typing animation, and a back-to-top button.</p>
+  </section>
+
+  <section id="features">
+    <h2>Features</h2>
+    <ul>
+      <li>Clean dark theme</li>
+      <li>Responsive layout</li>
+      <li>Smooth scrolling navigation</li>
+      <li>Fade-in scroll animations</li>
+      <li>Typing heading animation</li>
+      <li>Floating back-to-top button</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>You can add your contact details or links here.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Hussain Peera K | All Rights Reserved</p>
+  </footer>
+
+  <!-- Back to top button -->
+  <button id="backToTop">↑</button>
+
+  <script>
+    const backToTopBtn = document.getElementById("backToTop");
+    const sections = document.querySelectorAll("section");
+
+    // Back-to-top show/hide
+    window.addEventListener("scroll", () => {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        backToTopBtn.style.display = "block";
+      } else {
+        backToTopBtn.style.display = "none";
+      }
+
+      // Fade-in sections
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          section.classList.add("visible");
+        }
+      });
+    });
+
+    // Scroll to top
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Typing animation
+    const text = "🔥 Welcome to Hot.html 🔥";
+    const typingEl = document.getElementById("typing-text");
+    let i = 0;
+
+    function typeWriter() {
+      if (i < text.length) {
+        typingEl.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+      }
+    }
+    window.onload = typeWriter;
+  </script>
+</body>
+</html>
